@@ -1,0 +1,32 @@
+mixin createMenu(menu, active)
+	each value, key in menu
+		if active  == key
+			a.active(href= value)= key
+		else
+			a(href= value)= key
+block variables
+-
+	var dictMenu = { 'Самые известные гитары': 'index.html',
+		'Список популярных гитар' : "list.html",
+		'Ibanez': "Stratocaster.html"
+	}
+- var footer1 = '© Omelchenko M.A., B9121-09.03.04progin(3), 2023-2024'
+- var footer2 = '✉ Контакты'
+<!DOCTYPE html>
+html(lang="ru")
+	head
+		title #{title} 
+		link(rel="stylesheet", href="css/bootstrap-reboot.min.css")
+		link(rel="stylesheet", href="css/main.css")
+	body
+		block header
+			header
+				h2=title
+				div.menu
+					+createMenu(dictMenu,title)
+		block gallery
+		block content
+		block footer
+			hr
+			div.footer1 #{footer1}
+			div.footer2 #{footer2}

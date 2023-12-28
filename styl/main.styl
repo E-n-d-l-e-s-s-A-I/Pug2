@@ -1,0 +1,195 @@
+backColor1=lightgray
+backColor2=gray
+forwardColor=black
+menuForwardColor1=#164B69
+menuForwardColor2=yellow
+mainwidth=80%
+
+box()
+	color forwardColor
+	background-color backColor1
+	border: solid thin backColor2;
+back(size)
+	background-color #f1f1f1
+	box-shadow 4px 5px 10px rgba(0, 0, 1, 1)
+header
+	background-color backColor1
+	& h2
+		display inline-block
+		width 49%
+		margin-left 1%
+		padding 0.5%
+		vertical-align center
+		color forwardColor
+	& div.menu
+		display inline-flex
+		flex-wrap : no-wrap;
+		justify-content : space-evenly;
+		align-items: flex-end;
+		width 49%
+		& a
+			display inline-block
+			margin 1%
+			padding 0.5%
+			text-decoration none
+			color menuForwardColor1
+			font-weight	bold
+			font-size 23
+			text-align center
+			&.active
+				background-color backColor2
+				color menuForwardColor2
+			&:hover
+				background-color backColor2
+				color menuForwardColor2
+				
+div.gallery
+	display flex
+	flex-wrap wrap
+	width mainwidth	
+	margin 1% auto
+	justify-content center
+	& img
+		width: 49%
+		margin: 0.5% auto
+		&.head
+			display: block
+			width: 100%
+		&:hover
+			back(0.5)
+div.main
+	font-size 14px
+	display flex
+	flex-wrap no-wrap
+	width mainwidth
+	margin 0.5% auto
+	justify-content space-between
+	& div.content
+		width 30%
+		padding 1%
+		box()
+		text-align: center;
+		& img
+			margin 2%
+			width 80%
+		& p
+			color forwardColor
+	& div.content-flex
+		display flex
+		flex-direction column
+		width 30%
+		justify-content space-between
+		align-items center
+		& div.item
+			width 100%
+			box()
+			margin 1%
+			padding 1%
+			& img
+				display inline-block
+				float left
+				width 46%
+				margin 2%
+div.footer1
+	padding 1%;
+	width 49%
+	text-align left
+	float left
+div.footer2
+	padding 1%;
+	width 49%
+	text-align right
+	float left
+div.data
+	display flex
+	flex-direction row
+	flex-wrap nowrap
+	align-items flex-start
+	width 80%
+	padding 2%
+	margin 2% auto
+	text-align center
+	background-color backColor1
+	& div.dataContent
+		width 30%
+		background-color  backColor2;
+		margin 2%
+		& div.container
+				display flex
+				flex-direction row
+				& div.item
+					width 50%
+					text-align left
+					padding 2%;
+					& div.container1
+							display flex
+							flex-direction row
+							justify-content flex-start
+							& div.item
+								width 50%
+								& input
+									display inline-block
+									float left
+									width 10%
+									margin-right 1%
+								& p
+									display inline-block
+									float left
+									width 50%
+					&.columnItem
+						width 100%
+				& p
+					display inline-block
+					float left
+					width 50%
+					&.small
+						margin 0 2%
+						width 10%
+				&.column
+					flex-direction column
+				
+				& [type="text"]
+					display inline-block
+					float left
+					width 10%
+					width 50%
+					&.small
+						width: 10%
+					&.small
+						width: 10%
+
+		& [type="button"]
+			background-color backColor1
+			margin 2%
+div.table
+	& table
+		margin auto;
+		width 90%
+		background-color backColor1
+@media (max-width 1150px)
+	header
+		text-align center
+		& h2
+			width 0%
+			color lightgrey
+		& div.menu
+			flex-wrap wrap
+			& a
+				width 48%
+	div.gallery
+		& img
+			width 100%
+			margin 0.5% 0
+	div.main
+		flex-wrap wrap
+		& div.content
+			width 100%
+			margin 0.5%
+		& div.content-flex
+			width 100%
+	div.data
+		flex-direction column
+		flex-wrap no-wrap
+		& div.dataContent
+			margin 1% auto
+			width 90%	

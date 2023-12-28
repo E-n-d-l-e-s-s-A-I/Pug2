@@ -1,0 +1,62 @@
+extends template
+mixin createGallery(images, active)
+	each item in images
+		if active == item
+			img.head(src="img/"+item)
+		else
+			img(src="img/"+item)
+mixin createContent(contents)
+	each item in contents
+		div.content
+			img(src="img/"+item.image)
+			h3=item.header
+			p=item.text
+mixin createItems(items)
+	each item in items
+		div.item
+			img(src="img/"+item.image)
+			h3=item.header
+			p=item.text
+block variables
+	- var title = 'Самые известные гитары'
+	-
+		var listImages = ['img_1.png', 'img_2.jpg', 'img_2.jpg']
+	-
+		var listContents = [
+			{'header' : 'Gibson Les Paul',
+			'image' : 'img_3.jpg',
+			'text' : 'ESP James Hetfield - это сигнатурная серия гитар, выпущенная японским производителем музыкальных инструментов ESP Guitars для лидера и вокалиста группы Metallica, Джеймса Хэтфилда. Гитары этой серии обычно имеют корпус из махагона, накладку из палисандра, наклейку с изображением черепа и кости, а также два звукоснимателя EMG. Они также часто имеют характерный дизайн с вырезом в верхней части корпуса, что делает их узнаваемыми и популярными среди фанатов Metallica.'
+			},
+			{'header' : 'Gibson',
+			'image' : 'img_4.jpg',
+			'text' : 'Гитара Gibson Кирка Хэмметта - это сигнатурная серия гитар, выпущенная американским производителем музыкальных инструментов Gibson для гитариста группы Metallica, Кирка Хэмметта. Гитары этой серии обычно имеют корпус из махагона, накладку из палисандра, наклейку с изображением черепа и кости, а также два звукоснимателя EMG. Они также часто имеют характерный дизайн с вырезом в верхней части корпуса, что делает их узнаваемыми и популярными среди фанатов Metallica. Гитары Gibson Кирка Хэмметта также известны своим мощным звуком и отличной играбельностью, что делает их популярными среди музыкантов различных жанров.'
+			}
+		]
+	-
+		var listItems = [
+			{'header' : 'ESP',
+			'image' : 'img_5.jpg',
+			'text' : 'Gibson Les Paul - это одна из самых известных и популярных серий гитар, выпускаемых компанией Gibson. Она была создана в 1952 году.'
+			},
+			{'header' : 'Ibanez',
+			'image' : 'img_6.jpg',
+			'text' : 'Ibanez Paul Gilbert Signature Model - это электрогитара, разработанная в сотрудничестве с известным гитаристом Полом Гилбертом.'
+			},
+			{'header' : 'Ibanez GRX70QA',
+			'image' : 'img_7.jpg',
+			'text' : 'Ibanez GRX70QA - это электрогитара, которая представляет собой отличное сочетание качественного звука, стильного дизайна и доступной цены.'
+			}
+		]
+		
+block gallery
+	div.gallery
+		+createGallery(listImages,'img_1.png')
+
+block content
+	div.main
+		+createContent(listContents)
+		div.content-flex
+			+createItems(listItems)
+
+		
+	

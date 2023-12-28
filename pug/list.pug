@@ -1,0 +1,426 @@
+extends template
+mixin createGraph(tegs1, tegs2, tegs3)
+	div.dataContent
+		details
+			summary График
+			form
+				div.container
+					div.item
+						h5=teg1
+						- var i = 1
+						each teg in tegs2
+							div.container1
+								div.item1
+									input(type="radio" name="ox" value=i)
+								div.item1
+									p=teg
+							- i++
+					div.item
+						h5=teg2
+						- var i = 1
+						each teg in tegs3
+							div.container1
+								div.item1
+									input(type="checkbox" name="oy" value=i)
+								div.item1
+									p=teg
+							- i++
+				<input type="button" value="Построить">
+mixin createFiltr(tegs1, tegs2)
+	div.dataContent
+		details
+			summary Фильтр
+			form
+				div.container.column
+					each teg in tegs1
+						div.item.columnItem
+							p=teg
+							input(type="text" name="name")
+					each teg in tegs2
+						div.item.columnItem
+							p=teg
+							p.small='от'
+							input.small(type="text" name="name")
+							p.small='до'
+							input.small(type="text" name="name")
+			input(type="button" value="Найти")
+mixin createSort(tegs1, tegs2)
+	div.dataContent
+		details
+			summary Сортировка
+			form
+				div.container.column
+						- var i = 1
+						each teg in tegs1
+							div.item.columnItem
+								p=teg
+								+CreateSelect(tegs2)
+							- i++
+							div.item.columnItem
+								p='по убыванию'
+								input(type="checkbox" name="oy" value=i)
+
+				input(type="button" value="Построить")
+mixin CreateSelect(list)
+	select(name="sortFirst")
+		-var i = 1
+		each teg in list
+			option=teg
+mixin createTable(category, list)
+	table(border="1" cellspacing="0" cellpadding="5")
+		tr
+			each cat in category
+				th=cat
+		each item in list
+			tr
+				td=item.name
+				td=item.company
+				td=item.country
+				td=item.year
+				td=item.form
+				td=item.cost
+
+block variables
+	- var title = 'Список популярных гитар'
+	- var teg1 = 'Значениe по оси OX'
+	- var teg2 = 'Результат'
+	-
+		var GraphTegs2 = ['Компания', 'Страна', 'Год']
+	-
+		var GraphTegs3 = ['Максимальная стоимость', 'Минимальная стоимсоть', 'Количество гитар']
+	-
+		var FiltrTegs1 = ['Название:', 'Компания:', 'Страна:','Форма:']
+	-
+		var FiltrTegs2 = ['Год:', 'Стоимость:']
+	-
+		var SortTegs1 = ['Первый уровень:', 'Второй Уровень', 'Третий Уровень:']
+	-
+		var SortTegs2 = ['Название:', 'Компания:', 'Страна:','Форма:', 'Год:', 'Стоимость:']
+	-
+		var listItems = [
+			{'name' : 'Les Paul',
+			'company' : 'Gibson',
+			'country' : 'США',
+			'year' : '1952',
+			'form' : 'LP',
+			'cost' : '2999'
+			},
+			{'name' : 'Les Paul Standard',
+			'company' : 'Gibson',
+			'country' : 'США',
+			'year' : '1952',
+			'form' :'LP',
+			'cost' :'2999'
+			},
+			{'name' : 'Les Paul Classic',
+			'company' : 'Gibson',
+			'country' : 'США',
+			'year' : '1990',
+			'form' :'LP',
+			'cost' :'2199'
+			},
+			{'name' : 'Les Paul Studio',
+			'company' : 'Gibson',
+			'country' : 'США',
+			'year' : '1983',
+			'form' :'LP',
+			'cost' :'2699'
+			},
+			{'name' : 'SG',
+			'company' : 'Gibson',
+			'country' : 'США',
+			'year' : '1961',
+			'form' :'SG',
+			'cost' :'2199'
+			},
+			{'name' : 'Firebird',
+			'company' : 'Gibson',
+			'country' : 'США',
+			'year' : '1963',
+			'form' :'Firebird',
+			'cost' :'1999'
+			},
+			{'name' : 'Flying V',
+			'company' : 'Gibson',
+			'country' : 'США',
+			'year' : '1958',
+			'form' :'Flying V',
+			'cost' :'2499'
+			},
+			{'name' : 'Fender Jazzmaster',
+			'company' : 'Fender',
+			'country' : 'США',
+			'year' : '1958',
+			'form' :'Stratocaster',
+			'cost' :'839'
+			},
+			{'name' : 'Fender Jaguar',
+			'company' : 'Fender',
+			'country' : 'США',
+			'year' : '1962',
+			'form' :'Stratocaster',
+			'cost' :'829'
+			},
+			{'name' : 'Fender Mustang',
+			'company' : 'Fender',
+			'country' : 'США',
+			'year' : '1964',
+			'form' :'Stratocaster',
+			'cost' :'1149'
+			},
+			{'name' : 'Stratocaster',
+			'company' : 'Fender',
+			'country' : 'США',
+			'year' : '1954',
+			'form' :'Stratocaster',
+			'cost' :'999'
+			},
+			{'name' : 'Fender Jazzmaster',
+			'company' : 'Fender',
+			'country' : 'США',
+			'year' : '1958',
+			'form' :'Stratocaster',
+			'cost' :'839'
+			},
+			{'name' : 'LTD M-1000',
+			'company' : 'ESP',
+			'country' : 'Япония',
+			'year' : '1991',
+			'form' :'Stratocaster',
+			'cost' :'2799'
+			},
+			{'name' : 'M-I NTB',
+			'company' : 'ESP',
+			'country' : 'Япония',
+			'year' : '1995',
+			'form' :'Stratocaster',
+			'cost' :'5579'
+			},
+			{'name' : 'HORIZON-III',
+			'company' : 'ESP',
+			'country' : 'Япония',
+			'year' : '1999',
+			'form' :'Stratocaster',
+			'cost' :'5549'
+			},
+			{'name' : 'M-III',
+			'company' : 'ESP',
+			'country' : 'Япония',
+			'year' : '2010',
+			'form' :'Telecaster',
+			'cost' :'8999'
+			},
+			{'name' : 'M-I NTB',
+			'company' : 'ESP',
+			'country' : 'Япония',
+			'year' : '1995',
+			'form' :'Stratocaster',
+			'cost' :'5579'
+			},
+			{'name' : 'FRX CTM',
+			'company' : 'ESP',
+			'country' : 'Япония',
+			'year' : '2014',
+			'form' :'Stratocaster',
+			'cost' :'5999'
+			},
+			{'name' : 'Eclipse',
+			'company' : 'ESP',
+			'country' : 'Япония',
+			'year' : '2015',
+			'form' :'Stratocaster',
+			'cost' :'5799'
+			},
+			{'name' : 'Snapper-CTM-FM',
+			'company' : 'ESP',
+			'country' : 'Япония',
+			'year' : '2011',
+			'form' :'Stratocaster',
+			'cost' :'4999'
+			},
+			{'name' : 'Snapper AS-BR',
+			'company' : 'ESP',
+			'country' : 'Япония',
+			'year' : '2015',
+			'form' :'Stratocaster',
+			'cost' :'4499'
+			},
+			{'name' : 'Snapper-7',
+			'company' : 'ESP',
+			'country' : 'Япония',
+			'year' : '2008',
+			'form' :'Stratocaster',
+			'cost' :'3999'
+			},
+			{'name' : 'AZES Standard',
+			'company' : 'Ibanez',
+			'country' : 'Япония',
+			'year' : '2016',
+			'form' :'Telecaster',
+			'cost' :'349'
+			},
+			{'name' : 'AZS2209B',
+			'company' : 'Ibanez',
+			'country' : 'Япония',
+			'year' : '2016',
+			'form' :'Stratocaster',
+			'cost' :'1999'
+			},
+			{'name' : 'RG8870',
+			'company' : 'Ibanez',
+			'country' : 'Япония',
+			'year' : '2010',
+			'form' :'Stratocaster',
+			'cost' :'3299'
+			},
+			{'name' : 'Q52',
+			'company' : 'Ibanez',
+			'country' : 'Япония',
+			'year' : '2011',
+			'form' :'Stratocaster',
+			'cost' :'999'
+			},
+			{'name' : 'S6570SK',
+			'company' : 'Ibanez',
+			'country' : 'Япония',
+			'year' : '2018',
+			'form' :'Stratocaster',
+			'cost' :'2249'
+			},
+			{'name' : 'SA460MBW',
+			'company' : 'Ibanez',
+			'country' : 'Япония',
+			'year' : '2018',
+			'form' :'Stratocaster',
+			'cost' :'499'
+			},
+			{'name' : 'GSA60',
+			'company' : 'Ibanez',
+			'country' : 'Япония',
+			'year' : '2018',
+			'form' :'Stratocaster',
+			'cost' :'499'
+			},
+			{'name' : 'XPTB620',
+			'company' : 'Ibanez',
+			'country' : 'Япония',
+			'year' : '2019',
+			'form' :'Star',
+			'cost' :'1299'
+			},
+			{'name' : 'ICTB721',
+			'company' : 'Ibanez',
+			'country' : 'Япония',
+			'year' : '2007',
+			'form' :'Iceman',
+			'cost' :'1799'
+			},
+			{'name' : 'IC420',
+			'company' : 'Ibanez',
+			'country' : 'Япония',
+			'year' : '2017',
+			'form' :'Iceman',
+			'cost' :'699'
+			},
+			{'name' : 'AR420',
+			'company' : 'Ibanez',
+			'country' : 'Япония',
+			'year' : '2004',
+			'form' :'LPS',
+			'cost' :'550'
+			},
+			{'name' : 'GRGM21',
+			'company' : 'Ibanez',
+			'country' : 'Япония',
+			'year' : '2005',
+			'form' :'LPS',
+			'cost' :'300'
+			},
+			{'name' : 'GRGM21M',
+			'company' : 'Ibanez',
+			'country' : 'Япония',
+			'year' : '2005',
+			'form' :'LPS',
+			'cost' :'350'
+			},
+			{'name' : 'RGDMS8',
+			'company' : 'Ibanez',
+			'country' : 'Япония',
+			'year' : '2011',
+			'form' :'LPS',
+			'cost' :'1199'
+			},
+			{'name' : 'RGD61ALA	',
+			'company' : 'Ibanez',
+			'country' : 'Япония',
+			'year' : '2002',
+			'form' :'LPS',
+			'cost' :'999'
+			},
+			{'name' : 'RGD71ALPA',
+			'company' : 'Ibanez',
+			'country' : 'Япония',
+			'year' : '2009',
+			'form' :'LPS',
+			'cost' :'11399'
+			},
+			{'name' : 'RGD71ALPA1',
+			'company' : 'Ibanez',
+			'country' : 'Япония',
+			'year' : '2009',
+			'form' :'LPS',
+			'cost' :'1399'
+			},
+			{'name' : 'AR4250',
+			'company' : 'Ibanez',
+			'country' : 'Япония',
+			'year' : '2004',
+			'form' :'LPS',
+			'cost' :'570'},
+			{'name' : 'AS1',
+			'company' : 'ESP',
+			'country' : 'Япония',
+			'year' : '2001',
+			'form' :'Stratocaster',
+			'cost' :'1999'
+			},
+			{'name' : 'BR',
+			'company' : 'ESP',
+			'country' : 'Япония',
+			'year' : '2005',
+			'form' :'Stratocaster',
+			'cost' :'4199'
+			},
+			{'name' : 'SnapperV',
+			'company' : 'ESP',
+			'country' : 'Япония',
+			'year' : '2014',
+			'form' :'Stratocaster',
+			'cost' :'2499'
+			},
+			{'name' : 'AS-BR',
+			'company' : 'ESP',
+			'country' : 'Япония',
+			'year' : '2011',
+			'form' :'Stratocaster',
+			'cost' :'4569'
+			},
+			{'name' : 'Snapper AS1-BR',
+			'company' : 'ESP',
+			'country' : 'Япония',
+			'year' : '2012',
+			'form' :'Stratocaster',
+			'cost' :'3499'
+			}
+		]
+
+block content
+	div.data
+		+createGraph(GraphTegs1, GraphTegs2, GraphTegs3)
+		+createFiltr(FiltrTegs1, FiltrTegs2)
+		+createSort(SortTegs1, SortTegs2)
+	div.table
+		+createTable(SortTegs2, listItems)
+	
+		
+	
